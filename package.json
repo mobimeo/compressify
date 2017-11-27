@@ -1,5 +1,5 @@
 {
-  "name": "@derleth/image-compression-executable",
+  "name": "image-compression-executable",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
