@@ -1,7 +1,7 @@
 {
   "name": "image-compression-executable",
   "version": "1.0.0",
-  "description": "Image compression executable to run as precommit. Compresses images in the same place, builds hash-manifest and stages changed images",
+  "description": "Image compression executable to run as pre-commit. Compresses images in the same place, builds hash-manifest and stages changed images.",
   "author": "Thomas Derleth",
   "bin": {
     "compress": "./index.js"
