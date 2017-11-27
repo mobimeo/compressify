@@ -1,20 +1,25 @@
 {
   "name": "image-compression-executable",
   "version": "1.0.0",
-  "description": "",
+  "description": "Image compression executable to run as precommit. Compresses images in the same place, builds hash-manifest and stages changed images",
+  "author": "Thomas Derleth",
+  "bin": {
+    "compress": "./index.js"
+  },
   "main": "index.js",
   "scripts": {
-    "compress": "node compress.js 'content/**/*.{jpg,jpeg,png}' 'content' 'image-manifest.json'"
+    "compress": "compress  --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^2.3.0",
     "fs-extra": "^4.0.2",
     "gulp": "^3.9.1",
     "gulp-filter-by": "^1.2.0",
     "gulp-fn": "git://github.com/ThierrySpetebroot/gulp-fn.git",
     "gulp-image": "^4.1.0",
     "gulp-shell": "^0.6.3",
+    "minimist": "^1.2.0",
     "sha1": "^1.1.1"
   }
 }

@@ -1,4 +1,7 @@
-#!/usr/bin / env node
+#!/usr/bin/env node --harmony
+
+const argv = require('minimist')(process.argv.slice(2));
+const chalk = require('chalk');
 const filterBy = require('gulp-filter-by');
 const fs = require('fs-extra');
 const gulp = require('gulp');
@@ -7,11 +10,13 @@ const gulpShell = require('gulp-shell');
 const image = require('gulp-image');
 const sha1 = require('sha1');
 
-const DEST_PATH = process.argv.slice(2)[1];
-const MANIFEST_PATH = process.argv.slice(2)[2];
-const SRC_PATH = process.argv.slice(2)[0];
+const DEST_PATH = argv.dest;
+const MANIFEST_PATH = argv.manifest;
+const SRC_PATH = argv.src;
 
 const buildHash = file => sha1(file._contents + file.relative);
+
+console.log(chalk.yellow('Start image compression'));
 
 gulp.task('compress-images', () => {
   let manifest = {};
@@ -26,7 +31,9 @@ gulp.task('compress-images', () => {
       if (!Object.keys(manifest).length > 0 || !manifest.includes(buildHash(file))) return true;
       return false;
     }))
-    .pipe(image({concurrent: 10, gifsicle: true, mozjpeg: true, optipng: true, pngquant: true, svgo: true, zopflipng: true}))
+    .pipe(image({
+      concurrent: 10, gifsicle: true, mozjpeg: true, optipng: true, pngquant: true, svgo: true, zopflipng: true,
+    }))
     .pipe(gulp.dest(DEST_PATH))
     .pipe(gulpShell(['git add <%= file.path %>']));
 });
@@ -41,7 +48,8 @@ gulp.task('update-manifest', ['compress-images'], () => {
     .pipe(gulpFn(() => {
       fs.writeFileSync(MANIFEST_PATH, JSON.stringify(jsonData, null, 2));
     }))
-    .pipe(gulpShell([`git add ${MANIFEST_PATH}`]));
+    .pipe(gulpShell([`git add ${MANIFEST_PATH}`]))
+    .on('end', () => { console.log(chalk.yellow('Finished image compression')); });
 });
 
 gulp.start(['compress-images', 'update-manifest']);
