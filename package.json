@@ -1,0 +1,20 @@
+{
+  "name": "@derleth/image-compression-executable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compress": "node compress.js 'content/**/*.{jpg,jpeg,png}' 'content' 'image-manifest.json'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^4.0.2",
+    "gulp": "^3.9.1",
+    "gulp-filter-by": "^1.2.0",
+    "gulp-fn": "git://github.com/ThierrySpetebroot/gulp-fn.git",
+    "gulp-image": "^4.1.0",
+    "gulp-shell": "^0.6.3",
+    "sha1": "^1.1.1"
+  }
+}
