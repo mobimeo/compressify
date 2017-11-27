@@ -9,6 +9,7 @@ const gulpFn = require('gulp-fn');
 const gulpShell = require('gulp-shell');
 const image = require('gulp-image');
 const sha1 = require('sha1');
+const shell = require('shelljs');
 
 const DEST_PATH = argv.dest;
 const MANIFEST_PATH = argv.manifest;
@@ -39,17 +40,15 @@ gulp.task('compress-images', () => {
 });
 
 gulp.task('update-manifest', ['compress-images'], () => {
-  const jsonData = {};
+  let jsonData = {};
 
   return gulp.src(SRC_PATH)
-    .pipe(gulpFn((file) => {
-      jsonData[file.relative] = buildHash(file);
-    }))
-    .pipe(gulpFn(() => {
+    .pipe(gulpFn((file) => {jsonData[file.relative] = buildHash(file);}))
+    .on('end', () => {
       fs.writeFileSync(MANIFEST_PATH, JSON.stringify(jsonData, null, 2));
-    }))
-    .pipe(gulpShell([`git add ${MANIFEST_PATH}`]))
-    .on('end', () => { console.log(chalk.yellow('Finished image compression')); });
+      shell.exec(`git add ${MANIFEST_PATH}`);
+      console.log(chalk.yellow('Finished image compression'));
+    });
 });
 
 gulp.start(['compress-images', 'update-manifest']);
