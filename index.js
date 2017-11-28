@@ -52,7 +52,7 @@ gulp.task('update-manifest', ['compress-images'], () => {
     .pipe(gulpFn((file) => { jsonData[file.relative] = buildHash(file); }))
     .on('end', () => {
       fs.writeFileSync(MANIFEST_PATH, JSON.stringify(jsonData, null, 2));
-      shell.exec(`git add ${MANIFEST_PATH} && git commit -n -m "Autocommit @image-compression" `);
+      shell.exec(`git add ${MANIFEST_PATH}`);
       console.log(chalk.yellow('Finished image compression'));
     });
 });
