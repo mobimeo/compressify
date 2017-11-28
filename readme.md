@@ -8,13 +8,13 @@ Image compression executable to run as pre or post-commit. Compresses images in 
 
 ## Usage
 
-Image compression can run as standalone CLI command or used in combination with [husky](https://www.npmjs.com/package/husky) as pre-push. It will try to read the `--manifest` file and filter the already compressed images. The remaining images in the pipe will be compressed using [mozjpeg](https://github.com/mozilla/mozjpeg) and added to the stage. After compression takes place the hash manifest will be recreated, added to the stage and everything is committed.
+Image compression can run as standalone CLI command or used in combination with [husky](https://www.npmjs.com/package/husky) as pre-commit. It will try to read the `--manifest` file and filter the already compressed images. The remaining images in the pipe will be compressed using [mozjpeg](https://github.com/mozilla/mozjpeg) and added to the stage. After compression takes place the hash manifest will be recreated, added to the stage and everything is committed.
 
 ```json
 // package.json
 {
   "scripts": {
-    "prepush": "npm run compress",
+    "precommit": "npm run compress",
      "compress": "compress-images-in-same-place --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
   },
   "devDependencies": {
