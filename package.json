@@ -6,6 +6,9 @@
   "bin": {
     "compress-images-in-same-place": "./index.js"
   },
+  "scripts": {
+    "compress": "compress-images-in-same-place --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
+  },
   "main": "index.js",
   "license": "ISC",
   "dependencies": {
@@ -16,6 +19,7 @@
     "gulp-fn": "git://github.com/ThierrySpetebroot/gulp-fn.git",
     "gulp-image": "4.1.0",
     "gulp-shell": "0.6.3",
+    "husky": "^0.14.3",
     "minimist": "1.2.0",
     "sha1": "1.1.1",
     "shelljs": "0.7.8"

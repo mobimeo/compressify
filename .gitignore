@@ -1,4 +1,11 @@
 # Node packages
 # ---------------
-
 node_modules
+
+# Tests
+# ---------------
+test/*
+
+# Mac OS
+# ---------------
+.DS_Store
