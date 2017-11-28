@@ -4,11 +4,11 @@
   "description": "Image compression executable to run as pre-commit. Compresses images in the same place, builds hash-manifest and stages changed images.",
   "author": "Thomas Derleth",
   "bin": {
-    "compress": "./index.js"
+    "compress-images-in-same-place": "./index.js"
   },
   "main": "index.js",
   "scripts": {
-    "compress": "compress --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
+    "compress": "compress-images-in-same-place --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
   },
   "license": "ISC",
   "dependencies": {

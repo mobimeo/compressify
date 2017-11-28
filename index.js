@@ -1,5 +1,14 @@
 #!/usr/bin/env node --harmony
 
+/**
+ * @Author: Thomas Derleth <derleth>
+ * @Date:   2017-11-27T17:08:51+01:00
+ * @Email:  thomas.derleth@moovel.com
+ * @Filename: index.js
+ * @Last modified by:   derleth
+ * @Last modified time: 2017-11-28T11:11:28+01:00
+ */
+
 const argv = require('minimist')(process.argv.slice(2));
 const chalk = require('chalk');
 const filterBy = require('gulp-filter-by');
