@@ -8,7 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "compress": "compress  --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
+    "compress": "compress --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
   },
   "license": "ISC",
   "dependencies": {

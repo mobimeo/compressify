@@ -33,20 +33,26 @@ gulp.task('compress-images', () => {
       return false;
     }))
     .pipe(image({
-      concurrent: 10, gifsicle: true, mozjpeg: true, optipng: true, pngquant: true, svgo: true, zopflipng: true,
+      concurrent: 10,
+      gifsicle: true,
+      mozjpeg: true,
+      optipng: true,
+      pngquant: true,
+      svgo: true,
+      zopflipng: true,
     }))
     .pipe(gulp.dest(DEST_PATH))
     .pipe(gulpShell(['git add <%= file.path %>']));
 });
 
 gulp.task('update-manifest', ['compress-images'], () => {
-  let jsonData = {};
+  const jsonData = {};
 
   return gulp.src(SRC_PATH)
-    .pipe(gulpFn((file) => {jsonData[file.relative] = buildHash(file);}))
+    .pipe(gulpFn((file) => { jsonData[file.relative] = buildHash(file); }))
     .on('end', () => {
       fs.writeFileSync(MANIFEST_PATH, JSON.stringify(jsonData, null, 2));
-      shell.exec(`git add ${MANIFEST_PATH}`);
+      shell.exec(`git add ${MANIFEST_PATH} && git commit -m "Autocommit @image-compression"`);
       console.log(chalk.yellow('Finished image compression'));
     });
 });
