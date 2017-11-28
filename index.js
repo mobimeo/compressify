@@ -6,7 +6,7 @@
  * @Email:  thomas.derleth@moovel.com
  * @Filename: index.js
  * @Last modified by:   derleth
- * @Last modified time: 2017-11-28T13:04:31+01:00
+ * @Last modified time: 2017-11-28T13:23:09+01:00
  */
 
 const argv = require('minimist')(process.argv.slice(2));
@@ -61,7 +61,7 @@ gulp.task('update-manifest', ['compress-images'], () => {
     .pipe(gulpFn((file) => { jsonData[file.relative] = buildHash(file); }))
     .on('end', () => {
       fs.writeFileSync(MANIFEST_PATH, JSON.stringify(jsonData, null, 2));
-      shell.exec(`git add ${MANIFEST_PATH} && git commit -m "Autocommit @image-compression"`);
+      shell.exec(`git add ${MANIFEST_PATH} && git commit -m "Autocommit @image-compression" --no-verify`);
       console.log(chalk.yellow('Finished image compression'));
     });
 });
