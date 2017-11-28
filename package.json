@@ -7,9 +7,6 @@
     "compress-images-in-same-place": "./index.js"
   },
   "main": "index.js",
-  "scripts": {
-    "compress": "compress-images-in-same-place --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
-  },
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.3.0",
