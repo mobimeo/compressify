@@ -1,4 +1,4 @@
-#!/usr/bin/env node --harmony
+#!/usr/bin/env node
 
 const argv = require('minimist')(process.argv.slice(2));
 const chalk = require('chalk');
