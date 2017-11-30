@@ -4,7 +4,7 @@ Image compression executable to run as pre or post-commit. Compresses images in 
 
 ## Install
 
-`npm install --save-dev https://github.com/moovel/web-compress-images-in-same-place.git`
+`npm install --save-dev https://github.com/moovel/compressify.git`
 
 ## Usage
 
