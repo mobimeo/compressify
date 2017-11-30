@@ -1,13 +1,13 @@
 {
-  "name": "image-compression-executable",
+  "name": "compressify",
   "version": "1.0.0",
   "description": "Image compression executable to run as pre-commit. Compresses images in the same place, builds hash-manifest and stages changed images.",
   "author": "Thomas Derleth",
   "bin": {
-    "compress-images-in-same-place": "./index.js"
+    "compressify": "./index.js"
   },
   "scripts": {
-    "compress": "compress-images-in-same-place --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
+    "compress": "compressify --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
   },
   "main": "index.js",
   "license": "ISC",

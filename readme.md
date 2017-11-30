@@ -1,4 +1,4 @@
-# Image-compression executable
+# compressify
 
 Image compression executable to run as pre or post-commit. Compresses images in the same place, builds hash-manifest and stages changed images.
 
@@ -15,7 +15,7 @@ Image compression can run as standalone CLI command or used in combination with 
 {
   "scripts": {
     "prepush": "npm run compress",
-     "compress": "compress-images-in-same-place --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
+     "compress": "compressify --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
   },
   "devDependencies": {
     "husky": "^0.14.3",
