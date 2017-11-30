@@ -19,7 +19,7 @@ Image compression can run as standalone CLI command or used in combination with 
   },
   "devDependencies": {
     "husky": "^0.14.3",
-    "image-compression-executable": "git+https://github.com/moovel/web-compress-images-in-same-place.git"
+    "compressify": "git+https://github.com/moovel/compressify.git"
   }
 }
 ```
