@@ -14,13 +14,8 @@ Image compression can run as standalone CLI command or used in combination with 
 // package.json
 {
   "scripts": {
-<<<<<<< HEAD
-    "prepush": "npm run compress",
-     "compress": "compressify --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
-=======
     "precommit": "npm run compress",
-     "compress": "compress-images-in-same-place --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
->>>>>>> 65ebf16068f777b84e05b5814e8d0f4a7dcc5fba
+    "compress": "compressify --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
   },
   "devDependencies": {
     "husky": "^0.14.3",
