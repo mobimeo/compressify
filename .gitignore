@@ -5,6 +5,7 @@ node_modules
 # Tests
 # ---------------
 test/*
+image-manifest.json
 
 # Mac OS
 # ---------------

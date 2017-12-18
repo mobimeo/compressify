@@ -46,3 +46,11 @@ Image compression can run as standalone CLI command or used in combination with 
 | required     | `true`                      |
 | desc         | desc: path to hash manifest |
 | example      | `'image-manifest.json'`     |
+
+| `--gitadd` |                                              |
+| ---------- | -------------------------------------------- |
+| type       | `bool`                                       |
+| default    | `true`                                       |
+| required   | `false`                                      |
+| desc       | if images should be staged after compression |
+| example    | `false`                                      |

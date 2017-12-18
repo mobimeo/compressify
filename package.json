@@ -1,13 +1,13 @@
 {
   "name": "compressify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Image compression executable to run as pre-commit. Compresses images in the same place, builds hash-manifest and stages changed images.",
   "author": "Thomas Derleth",
   "bin": {
     "compressify": "./index.js"
   },
   "scripts": {
-    "compress": "compressify --dest 'content' --src 'content/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json'"
+    "compress": "compressify --dest 'test' --src 'test/**/*.{jpg,jpeg,png}' --manifest 'image-manifest.json' --gitadd 'false'"
   },
   "main": "index.js",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "gulp": "3.9.1",
     "gulp-filter-by": "1.2.0",
     "gulp-fn": "git://github.com/ThierrySpetebroot/gulp-fn.git",
+    "gulp-if": "^2.0.2",
     "gulp-image": "4.1.0",
     "gulp-shell": "0.6.3",
     "husky": "^0.14.3",

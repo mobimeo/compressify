@@ -10,10 +10,12 @@ const gulpShell = require('gulp-shell');
 const image = require('gulp-image');
 const sha1 = require('sha1');
 const shell = require('shelljs');
+var gulpif = require('gulp-if');
 
 const DEST_PATH = argv.dest;
 const MANIFEST_PATH = argv.manifest;
 const SRC_PATH = argv.src;
+const GIT_ADD = argv.gitadd || true;
 
 const buildHash = file => sha1(file._contents + file.relative);
 
@@ -42,17 +44,23 @@ gulp.task('compress-images', () => {
       zopflipng: false,
     }))
     .pipe(gulp.dest(DEST_PATH))
-    .pipe(gulpShell(['git add <%= file.path %>']));
+    .pipe(gulpif(GIT_ADD, gulpShell(['git add <%= file.path %>'])));
 });
 
 gulp.task('update-manifest', ['compress-images'], () => {
   const jsonData = {};
+  const jsonDataSorted = {};
 
   return gulp.src(SRC_PATH)
     .pipe(gulpFn((file) => { jsonData[file.relative] = buildHash(file); }))
     .on('end', () => {
-      fs.writeFileSync(MANIFEST_PATH, JSON.stringify(jsonData, null, 2));
-      shell.exec(`git add ${MANIFEST_PATH}`);
+      Object.keys(jsonData).sort().forEach((key) => {
+        jsonDataSorted[key] = jsonData[key];
+      });
+      fs.writeFileSync(MANIFEST_PATH, JSON.stringify(jsonDataSorted, null, 2));
+      if (GIT_ADD == true) {
+        shell.exec(`git add ${MANIFEST_PATH}`);
+      }
       console.log(chalk.yellow('Finished image compression'));
     });
 });
