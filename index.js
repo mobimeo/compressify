@@ -49,14 +49,13 @@ gulp.task('compress-images', () => {
 
 gulp.task('update-manifest', ['compress-images'], () => {
   const jsonData = {};
-  const jsonDataSorted = {};
 
   return gulp.src(SRC_PATH)
     .pipe(gulpFn((file) => { jsonData[file.relative] = buildHash(file); }))
     .on('end', () => {
-      Object.keys(jsonData).sort().forEach((key) => {
-        jsonDataSorted[key] = jsonData[key];
-      });
+      const jsonDataSorted = Object.keys(jsonData).sort((a, b) => a.localeCompare(b, undefined, {
+        numeric: true,
+      }));
       fs.writeFileSync(MANIFEST_PATH, JSON.stringify(jsonDataSorted, null, 2));
       if (GIT_ADD == true) {
         shell.exec(`git add ${MANIFEST_PATH}`);

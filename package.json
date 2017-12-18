@@ -1,6 +1,6 @@
 {
   "name": "compressify",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Image compression executable to run as pre-commit. Compresses images in the same place, builds hash-manifest and stages changed images.",
   "author": "Thomas Derleth",
   "bin": {
