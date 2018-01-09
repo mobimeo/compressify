@@ -53,9 +53,10 @@ gulp.task('update-manifest', ['compress-images'], () => {
   return gulp.src(SRC_PATH)
     .pipe(gulpFn((file) => { jsonData[file.relative] = buildHash(file); }))
     .on('end', () => {
-      const jsonDataSorted = Object.keys(jsonData).sort((a, b) => a.localeCompare(b, undefined, {
-        numeric: true,
-      }));
+      const jsonDataSorted = {};
+      Object.keys(jsonData).sort((a, b) => a.localeCompare(b, undefined, {numeric: true,})).forEach(function(key) {
+        jsonDataSorted[key] = jsonData[key];
+      });
       fs.writeFileSync(MANIFEST_PATH, JSON.stringify(jsonDataSorted, null, 2));
       if (GIT_ADD == true) {
         shell.exec(`git add ${MANIFEST_PATH}`);
