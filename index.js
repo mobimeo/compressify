@@ -21,6 +21,12 @@ const buildHash = file => sha1(file._contents + file.relative);
 
 console.log(chalk.yellow('Start image compression'));
 
+function sortObject(object) {
+  return Object.keys(object)
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+    .reduce((result, key) => ((result[key] = object[key]), result), {});
+}
+
 gulp.task('compress-images', () => {
   let manifest = {};
 
@@ -53,10 +59,8 @@ gulp.task('update-manifest', ['compress-images'], () => {
   return gulp.src(SRC_PATH)
     .pipe(gulpFn((file) => { jsonData[file.relative] = buildHash(file); }))
     .on('end', () => {
-      const jsonDataSorted = {};
-      Object.keys(jsonData).sort((a, b) => a.localeCompare(b, undefined, {numeric: true,})).forEach(function(key) {
-        jsonDataSorted[key] = jsonData[key];
-      });
+      const jsonDataSorted = sortObject(jsonData);
+      
       fs.writeFileSync(MANIFEST_PATH, JSON.stringify(jsonDataSorted, null, 2));
       if (GIT_ADD == true) {
         shell.exec(`git add ${MANIFEST_PATH}`);
